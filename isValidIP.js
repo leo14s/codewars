@@ -21,17 +21,11 @@
 
 function isValidIP(str) {
   const ip = str.split(".");
-  if (ip.length > 4 && ip.length < 4) {
+  if (ip.length > 4 || ip.length < 4) {
     return false;
   }
-  console.log(ip.length);
   const result = ip.some(octet => {
-    if (
-      octet.charAt(0) == "0" &&
-      octet.length > 1 &&
-      octet > 255 &&
-      Number(octet) == NaN
-    ) {
+    if ((octet.charAt(0) == "0" && octet.length > 1) || octet > 255) {
       return true;
     }
   });
