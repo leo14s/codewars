@@ -25,7 +25,13 @@ function isValidIP(str) {
     return false;
   }
   const result = ip.some(octet => {
-    if ((octet.charAt(0) == "0" && octet.length == 1) || octet > 255) {
+    if (
+      (octet.charAt(0) == "0" && octet.length == 1) ||
+      octet > 255 ||
+      octet.charAt(0) == " " ||
+      octet.charAt(octet.length - 1) == " " ||
+      octet < 0
+    ) {
       return true;
     }
   });
@@ -33,11 +39,11 @@ function isValidIP(str) {
   return !result;
 }
 
-console.log(isValidIP("123.456.789.0"));
-console.log(isValidIP("256.1.2.3"));
-console.log(isValidIP(" 1.2.3.4"));
-console.log(isValidIP("1.2.3.4 "));
-console.log(isValidIP("12.34.56.-7"));
+//console.log(isValidIP("123.456.789.0"));
+//console.log(isValidIP("256.1.2.3"));
+//console.log(isValidIP(" 1.2.3.4"));
+//console.log(isValidIP("1.2.3.4 "));
+//console.log(isValidIP("12.34.56.-7"));
 console.log(isValidIP("1.2.3.4\n"));
 console.log(isValidIP("0.0.0.0"));
 console.log(isValidIP("\n1.2.3.4"));
