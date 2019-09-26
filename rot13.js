@@ -8,21 +8,30 @@
  * alphabet should be shifted, like in the original Rot13 "implementation".
  */
 
-function rot13(message) {
-  console.log(String.fromCharCode(65, 90));
-  console.log(String.fromCharCode(97, 122));
-  console.log(message.charCodeAt(0));
-  console.log(message.charCodeAt(1));
-  console.log(message.charCodeAt(2));
-  //character == character.toUpperCase()
+// ABCDEFGHIJKLMNOPQRSTUVXYWZ
 
-  return message.split("").map(letter => {
-    return String.fromCharCode(
-      letter.charCodeAt(0) + 15 > 90
-        ? letter.charCodeAt(0) + 15 - 90 + 65
-        : letter.charCodeAt(0) + 15
-    );
-  });
+function rot13(message) {
+  return message
+    .split("")
+    .map(letter => {
+      let unicode = letter.charCodeAt(0);
+
+      if (unicode >= 65 && unicode <= 90) {
+        unicode = unicode + 13;
+        if (unicode > 90) {
+          unicode = unicode - 91 + 65;
+        }
+      }
+      if (unicode >= 97 && unicode <= 122) {
+        unicode = unicode + 13;
+        if (unicode > 122) {
+          unicode = unicode - 123 + 97;
+        }
+      }
+
+      return String.fromCharCode(unicode);
+    })
+    .join("");
 }
 
-console.log(rot13("abc"));
+console.log(rot13("TEST"));
