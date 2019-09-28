@@ -17,7 +17,18 @@ function validSolution(board) {
     });
   });
 
-  console.log(hasZeros);
+  //check lines
+
+  /**
+   * check columns:
+   * transform into new array and apply same validation from lines
+   */
+  let arrColumn = [];
+  board.forEach(arr => {
+    arrColumn.push(arr[0]);
+  });
+
+  console.log(arrColumn);
 }
 
-validSolution([[1, 2, 3], [1, 0, 3]]);
+validSolution([[1, 2, 3], [2, 3, 1], [3, 1, 2]]);
